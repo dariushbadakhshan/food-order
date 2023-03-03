@@ -1,12 +1,16 @@
+import { FC } from "react";
 import CartItem from "./cart-item";
 import Checkout from "./cart-checkout";
 import Modal from "../modal/modal";
 
-const Cart = () => {
+type props = {
+  onClose: () => void;
+};
+const Cart: FC<props> = ({ onClose }) => {
   return (
-    <Modal>
+    <Modal closeModal={onClose}>
       <CartItem />
-      <Checkout />
+      <Checkout onClose={onClose} />
     </Modal>
   );
 };

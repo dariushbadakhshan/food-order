@@ -1,4 +1,10 @@
-const Checkout = () => {
+import { FC } from "react";
+import useCart from "../../store/cart-store";
+
+type props = {
+  onClose: () => void;
+};
+const Checkout: FC<props> = ({ onClose }) => {
   return (
     <div>
       <div>
@@ -6,7 +12,7 @@ const Checkout = () => {
         <h2>totalPrice</h2>
       </div>
       <div>
-        <button>Close</button>
+        <button onClick={onClose}>Close</button>
         <button>Order</button>
       </div>
     </div>
