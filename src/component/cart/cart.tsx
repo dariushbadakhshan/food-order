@@ -1,12 +1,13 @@
 import CartItem from "./cart-item";
 import Checkout from "./cart-checkout";
+import Modal from "../modal/modal";
 
 const Cart = () => {
   return (
-    <div>
+    <Modal>
       <CartItem />
       <Checkout />
-    </div>
+    </Modal>
   );
 };
 export default Cart;
