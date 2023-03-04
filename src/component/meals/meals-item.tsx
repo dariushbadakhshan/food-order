@@ -13,7 +13,7 @@ const MealItem: FC<props> = ({ item }) => {
         description={item.description}
         price={item.price}
       />
-      <MealItemForm />
+      <MealItemForm item={item} />
     </li>
   );
 };

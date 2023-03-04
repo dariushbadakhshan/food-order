@@ -1,12 +1,19 @@
 import CartIcon from "./header.navbar-cart-icon";
 import useCart from "../../store/cart-store";
+import useMealsItemStore from "../../store/meals-item-store";
 
 const Navbar = () => {
   const showCartModal = useCart((state) => state.showCartModal);
 
+  const items = useMealsItemStore((state) => state.items);
+
   const showCartHandler = () => {
     showCartModal();
   };
+
+  const numberOfCartItems = items.reduce((currentNumber, item) => {
+    return (currentNumber += item.quantity);
+  }, 0);
 
   return (
     <div>
@@ -18,8 +25,8 @@ const Navbar = () => {
           <span>
             <CartIcon />
           </span>
-          <span>cart</span>
-          <span>5</span>
+          <span>Your Cart</span>
+          <span>{numberOfCartItems} </span>
         </button>
       </div>
     </div>

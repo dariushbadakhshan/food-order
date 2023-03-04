@@ -1,15 +1,29 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
+import useMealsItemStore from "../../store/meals-item-store";
 
-const MealItemForm = () => {
+type props = {
+  item: { id: string; name: string; description: string; price: number };
+};
+
+const MealItemForm: FC<props> = ({ item }) => {
   const [enteredAmount, setEnteredAmount] = useState<number>(0);
 
+  const addItem = useMealsItemStore((state) => state.addItem);
+
   const amountInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setEnteredAmount(Number(event.target.value));
   };
 
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
+
+    addItem({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      quantity: enteredAmount,
+    });
+
     setEnteredAmount(0);
   };
   return (
